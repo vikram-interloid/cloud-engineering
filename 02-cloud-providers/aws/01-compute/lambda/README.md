@@ -106,3 +106,165 @@ export const handler = async (event) => {
   return { statusCode: 404, body: JSON.stringify({ error: 'Not Found' }) };
 };
 ```
+
+---
+
+## 5. Infrastructure as Code & SDK Implementations
+
+### CDK (TypeScript)
+
+```typescript
+import * as cdk from 'aws-cdk-lib';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
+import * as sqs from 'aws-cdk-lib/aws-sqs';
+import * as eventSources from 'aws-cdk-lib/aws-lambda-event-sources';
+import { Construct } from 'constructs';
+
+export class FaaSStack extends cdk.Stack {
+  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+    super(scope, id, props);
+
+    const queue = new sqs.Queue(this, 'OrdersQueue', {
+      visibilityTimeout: cdk.Duration.seconds(300),
+    });
+
+    const handler = new lambda.Function(this, 'OrderProcessor', {
+      runtime: lambda.Runtime.NODEJS_20_X,
+      handler: 'index.handler',
+      code: lambda.Code.fromInline(`
+        exports.handler = async (event) => {
+          for (const record of event.Records) {
+            console.log("Processed order payload:", record.body);
+          }
+          return { statusCode: 200 };
+        };
+      `),
+      memorySize: 256,
+      timeout: cdk.Duration.seconds(30),
+      architecture: lambda.Architecture.ARM_64,
+    });
+
+    handler.addEventSource(new eventSources.SqsEventSource(queue, { batchSize: 10 }));
+  }
+}
+```
+
+### CDK (Python)
+
+```python
+import aws_cdk as cdk
+from aws_cdk import (
+    aws_lambda as _lambda,
+    aws_sqs as sqs,
+    aws_lambda_event_sources as event_sources,
+    Duration
+)
+from constructs import Construct
+
+class FaaSStack(cdk.Stack):
+    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
+        super().__init__(scope, construct_id, **kwargs)
+
+        queue = sqs.Queue(self, "OrdersQueue", visibility_timeout=Duration.seconds(300))
+
+        handler = _lambda.Function(
+            self, "OrderProcessor",
+            runtime=_lambda.Runtime.PYTHON_3_12,
+            handler="index.handler",
+            code=_lambda.Code.from_inline(
+                "def handler(event, context):\n"
+                "    for record in event.get('Records', []):\n"
+                "        print(f'Processed order: {record[\"body\"]}')\n"
+                "    return {'statusCode': 200}\n"
+            ),
+            memory_size=256,
+            timeout=Duration.seconds(30),
+            architecture=_lambda.Architecture.ARM_64
+        )
+
+        handler.add_event_source(event_sources.SqsEventSource(queue, batch_size=10))
+```
+
+### YAML (AWS SAM)
+
+```yaml
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS Lambda Function with SQS Trigger
+
+Resources:
+  OrdersQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      VisibilityTimeout: 300
+
+  OrderProcessorFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs20.x
+      Architectures:
+        - arm64
+      MemorySize: 256
+      Timeout: 30
+      InlineCode: |
+        exports.handler = async (event) => {
+          for (const record of event.Records) {
+            console.log("Processed:", record.body);
+          }
+          return { statusCode: 200 };
+        };
+      Events:
+        SQSTrigger:
+          Type: SQS
+          Properties:
+            Queue: !GetAtt OrdersQueue.Arn
+            BatchSize: 10
+```
+
+### SDK (TypeScript)
+
+```typescript
+import { LambdaClient, InvokeCommand } from '@aws-sdk/client-lambda';
+
+const client = new LambdaClient({ region: 'us-east-1' });
+
+async function invokeFunction() {
+  const payload = { orderId: 'ord-8832', amount: 49.99, currency: 'USD' };
+
+  const command = new InvokeCommand({
+    FunctionName: 'OrderProcessorFunction',
+    InvocationType: 'RequestResponse',
+    Payload: Buffer.from(JSON.stringify(payload)),
+  });
+
+  const response = await client.send(command);
+  const result = Buffer.from(response.Payload ?? []).toString('utf-8');
+  console.log('Execution Result:', JSON.parse(result));
+}
+
+invokeFunction();
+```
+
+### SDK (Python)
+
+```python
+import json
+import boto3
+
+lambda_client = boto3.client('lambda', region_name='us-east-1')
+
+def invoke_function():
+    payload = {"orderId": "ord-8832", "amount": 49.99, "currency": "USD"}
+    
+    response = lambda_client.invoke(
+        FunctionName='OrderProcessorFunction',
+        InvocationType='RequestResponse',
+        Payload=json.dumps(payload).encode('utf-8')
+    )
+    
+    result = json.loads(response['Payload'].read().decode('utf-8'))
+    print("Execution Result:", result)
+
+invoke_function()
+```

@@ -58,17 +58,17 @@ sequenceDiagram
 
 ### Essential DNS Record Types
 
-| Record Type | Full Name | Purpose & Syntax | Production Cloud Use Case |
-| :--- | :--- | :--- | :--- |
-| **A** | Address Record | Maps a hostname to a **32-bit IPv4** address (`api.example.com -> 192.0.2.1`). | Pointing web domain to an Elastic IP or server. |
-| **AAAA** | IPv6 Address Record | Maps a hostname to a **128-bit IPv6** address (`api.example.com -> 2001:db8::1`). | Dual-stack cloud workloads and mobile clients. |
-| **CNAME** | Canonical Name | Maps a hostname to another hostname alias (`www.example.com -> example.com`). | Pointing vanity subdomains to cloud CDN endpoints. |
-| **ALIAS / ANAME** | Virtual Alias (Cloud-native)| Provider-specific record that acts as an `A` record at the zone apex (`example.com`). | Resolving the zone apex directly to an AWS ALB or CloudFront distribution. |
-| **MX** | Mail Exchange | Directs email to mail servers with priority weighting (`10 mail.example.com`). | Google Workspace or Microsoft 365 email routing. |
-| **TXT** | Text Record | Arbitrary human/machine-readable text metadata. | SPF, DKIM, and DMARC email spoofing security. |
-| **PTR** | Pointer Record | Maps an IP address to a canonical hostname (**Reverse DNS**). | Anti-spam validation for outbound mail servers. |
-| **NS** | Name Server | Delegates a DNS zone to authoritative servers (`ns-1.awsdns.org`). | Delegating a subdomain to a specialized cloud account. |
-| **SOA** | Start of Authority | Metadata specifying zone administrator, serial number, and refresh timers. | Zone transfer synchronization across secondary servers. |
+| Record Type       | Full Name                    | Purpose & Syntax                                                                      | Production Cloud Use Case                                                  |
+| :---------------- | :--------------------------- | :------------------------------------------------------------------------------------ | :------------------------------------------------------------------------- |
+| **A**             | Address Record               | Maps a hostname to a **32-bit IPv4** address (`api.example.com -> 192.0.2.1`).        | Pointing web domain to an Elastic IP or server.                            |
+| **AAAA**          | IPv6 Address Record          | Maps a hostname to a **128-bit IPv6** address (`api.example.com -> 2001:db8::1`).     | Dual-stack cloud workloads and mobile clients.                             |
+| **CNAME**         | Canonical Name               | Maps a hostname to another hostname alias (`www.example.com -> example.com`).         | Pointing vanity subdomains to cloud CDN endpoints.                         |
+| **ALIAS / ANAME** | Virtual Alias (Cloud-native) | Provider-specific record that acts as an `A` record at the zone apex (`example.com`). | Resolving the zone apex directly to an AWS ALB or CloudFront distribution. |
+| **MX**            | Mail Exchange                | Directs email to mail servers with priority weighting (`10 mail.example.com`).        | Google Workspace or Microsoft 365 email routing.                           |
+| **TXT**           | Text Record                  | Arbitrary human/machine-readable text metadata.                                       | SPF, DKIM, and DMARC email spoofing security.                              |
+| **PTR**           | Pointer Record               | Maps an IP address to a canonical hostname (**Reverse DNS**).                         | Anti-spam validation for outbound mail servers.                            |
+| **NS**            | Name Server                  | Delegates a DNS zone to authoritative servers (`ns-1.awsdns.org`).                    | Delegating a subdomain to a specialized cloud account.                     |
+| **SOA**           | Start of Authority           | Metadata specifying zone administrator, serial number, and refresh timers.            | Zone transfer synchronization across secondary servers.                    |
 
 > [!IMPORTANT] The Zone Apex CNAME Limitation
 > Standard DNS specifications (RFC 1034) prohibit creating a `CNAME` record at the zone apex (`example.com` without `www`) because a `CNAME` cannot coexist with required `SOA` and `NS` records. Cloud providers solved this by introducing proprietary virtual alias records (such as **AWS Route 53 ALIAS records** or **Azure DNS Alias**), which dynamically synthesize `A` records to track elastic cloud load balancer IP changes.

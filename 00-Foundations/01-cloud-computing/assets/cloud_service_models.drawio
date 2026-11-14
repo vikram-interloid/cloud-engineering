@@ -1,0 +1,116 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" version="21.6.8" type="device">
+  <diagram id="service-models-diagram" name="Cloud Architecture &amp; Service Models">
+    <mxGraphModel dx="1400" dy="950" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1240" pageHeight="920" background="#0b0f19" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Title Container -->
+        <mxCell id="title_box" value="&lt;font color=&quot;#f8fafc&quot;&gt;&lt;b style=&quot;font-size: 20px;&quot;&gt;Cloud Computing: Architecture, Service Delivery Models &amp;amp; AWS Services&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;font-size: 12px; color: #94a3b8;&quot;&gt;End-to-End Hierarchy from Physical Data Center Racks to MicroVMs, Managed Platforms, and Turnkey SaaS&lt;/span&gt;&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#131c2e;strokeColor=#334155;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="30" y="20" width="1180" height="65" as="geometry" />
+        </mxCell>
+
+        <!-- Clients Bar -->
+        <mxCell id="clients_bar" value="&lt;b style=&quot;color: #38bdf8; font-size: 13px;&quot;&gt;CLIENTS &amp;amp; INGRESS:&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111827;strokeColor=#3b82f6;strokeWidth=1.5;dashed=1;align=left;spacingLeft=20;" vertex="1" parent="1">
+          <mxGeometry x="30" y="100" width="1180" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="c_web" value="Web Browsers (HTTPS)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e293b;strokeColor=#475569;fontColor=#e2e8f0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="210" y="112" width="180" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="c_mobile" value="Mobile Apps (iOS / Android)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e293b;strokeColor=#475569;fontColor=#e2e8f0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="410" y="112" width="180" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="c_api" value="REST / GraphQL APIs" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e293b;strokeColor=#475569;fontColor=#e2e8f0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="610" y="112" width="180" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="c_devops" value="CLI &amp;amp; DevOps Pipelines" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e293b;strokeColor=#475569;fontColor=#e2e8f0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="810" y="112" width="180" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="c_iot" value="IoT &amp;amp; Edge Sensors" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e293b;strokeColor=#475569;fontColor=#e2e8f0;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="1010" y="112" width="180" height="32" as="geometry" />
+        </mxCell>
+
+        <!-- COLUMN 1: IaaS -->
+        <mxCell id="iaas_card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e1b18;strokeColor=#f97316;strokeWidth=2;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="30" y="175" width="280" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="iaas_header" value="&lt;b style=&quot;font-size: 15px; color: #fdba74;&quot;&gt;IaaS · Infrastructure&lt;/b&gt;&lt;br/&gt;&lt;b style=&quot;font-size: 11px; color: #fed7aa;&quot;&gt;MAXIMUM CONTROL&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;font-size: 10px; color: #94a3b8;&quot;&gt;Virtual Hardware, vCPUs, Raw Storage, SDN&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ea580c;fillOpacity=30;strokeColor=#ea580c;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="175" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iaas_services" value="&lt;b style=&quot;color: #fb923c;&quot;&gt;CORE AWS SERVICES:&lt;/b&gt;&lt;br/&gt;• Amazon EC2 (Virtual Servers)&lt;br/&gt;• Amazon EBS (Block Storage Disks)&lt;br/&gt;• Amazon VPC &amp;amp; Subnets (SDN)&lt;br/&gt;• AWS Direct Connect (Dedicated Fiber)&lt;br/&gt;• AWS Outposts (On-Premises Rack)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#131a29;strokeColor=#f97316;strokeWidth=1;strokeOpacity=40;align=left;spacingLeft=15;fontColor=#e2e8f0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="45" y="250" width="250" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="iaas_resp" value="&lt;b style=&quot;color: #38bdf8; font-size: 10px;&quot;&gt;YOU MANAGE (CUSTOMER):&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;color: #94a3b8; font-size: 10px;&quot;&gt;OS, Kernel Patching, Security Firewalls,&lt;br/&gt;Runtimes, Applications, and Customer Data&lt;/span&gt;&lt;br/&gt;&lt;b style=&quot;color: #34d399; font-size: 10px;&quot;&gt;AWS PROVIDES:&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;color: #94a3b8; font-size: 10px;&quot;&gt;Physical Racks, Hypervisor (Nitro), DWDM&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0d1424;strokeColor=#334155;strokeWidth=1;align=left;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="45" y="395" width="250" height="105" as="geometry" />
+        </mxCell>
+
+        <!-- COLUMN 2: PaaS -->
+        <mxCell id="paas_card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111b27;strokeColor=#0284c7;strokeWidth=2;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="330" y="175" width="280" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="paas_header" value="&lt;b style=&quot;font-size: 15px; color: #7dd3fc;&quot;&gt;PaaS · Platform&lt;/b&gt;&lt;br/&gt;&lt;b style=&quot;font-size: 11px; color: #bae6fd;&quot;&gt;DEVELOPER VELOCITY&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;font-size: 10px; color: #94a3b8;&quot;&gt;Managed Runtimes, Containers &amp;amp; Databases&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0284c7;fillOpacity=30;strokeColor=#0284c7;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="175" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="paas_services" value="&lt;b style=&quot;color: #38bdf8;&quot;&gt;CORE AWS SERVICES:&lt;/b&gt;&lt;br/&gt;• AWS App Runner (Managed Containers)&lt;br/&gt;• AWS Elastic Beanstalk (Web App PaaS)&lt;br/&gt;• Amazon RDS / Aurora (Managed SQL)&lt;br/&gt;• Amazon EKS / ECS (Managed Clusters)&lt;br/&gt;• Amazon EFS (Managed Elastic NFS)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#131a29;strokeColor=#0284c7;strokeWidth=1;strokeOpacity=40;align=left;spacingLeft=15;fontColor=#e2e8f0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="345" y="250" width="250" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="paas_resp" value="&lt;b style=&quot;color: #38bdf8; font-size: 10px;&quot;&gt;YOU MANAGE (CUSTOMER):&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;color: #94a3b8; font-size: 10px;&quot;&gt;Application Code, Container Images,&lt;br/&gt;Database Schemas, and Access Policies&lt;/span&gt;&lt;br/&gt;&lt;b style=&quot;color: #34d399; font-size: 10px;&quot;&gt;AWS PROVIDES:&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;color: #94a3b8; font-size: 10px;&quot;&gt;OS Hardening, Autoscaling, DB Patching&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0d1424;strokeColor=#334155;strokeWidth=1;align=left;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="345" y="395" width="250" height="105" as="geometry" />
+        </mxCell>
+
+        <!-- COLUMN 3: FaaS -->
+        <mxCell id="faas_card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0f231c;strokeColor=#10b981;strokeWidth=2;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="630" y="175" width="280" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="faas_header" value="&lt;b style=&quot;font-size: 15px; color: #6ee7b7;&quot;&gt;FaaS · Serverless&lt;/b&gt;&lt;br/&gt;&lt;b style=&quot;font-size: 11px; color: #a7f3d0;&quot;&gt;ZERO SERVER OPS&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;font-size: 10px; color: #94a3b8;&quot;&gt;Event-Driven MicroVMs &amp;amp; Zero Idle Cost&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#10b981;fillOpacity=30;strokeColor=#10b981;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="175" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="faas_services" value="&lt;b style=&quot;color: #34d399;&quot;&gt;CORE AWS SERVICES:&lt;/b&gt;&lt;br/&gt;• AWS Lambda (Sub-5ms MicroVMs)&lt;br/&gt;• AWS Fargate (Serverless Containers)&lt;br/&gt;• Amazon DynamoDB (Serverless NoSQL)&lt;br/&gt;• Amazon S3 (Serverless Object Store)&lt;br/&gt;• AWS Step Functions &amp;amp; EventBridge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#131a29;strokeColor=#10b981;strokeWidth=1;strokeOpacity=40;align=left;spacingLeft=15;fontColor=#e2e8f0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="645" y="250" width="250" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="faas_resp" value="&lt;b style=&quot;color: #38bdf8; font-size: 10px;&quot;&gt;YOU MANAGE (CUSTOMER):&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;color: #94a3b8; font-size: 10px;&quot;&gt;Function Logic, Event Bindings, IAM Roles,&lt;br/&gt;Dependency Bundles, and Concurrency&lt;/span&gt;&lt;br/&gt;&lt;b style=&quot;color: #34d399; font-size: 10px;&quot;&gt;AWS PROVIDES:&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;color: #94a3b8; font-size: 10px;&quot;&gt;Firecracker MicroVMs, Concurrency Auto-scale&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0d1424;strokeColor=#334155;strokeWidth=1;align=left;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="645" y="395" width="250" height="105" as="geometry" />
+        </mxCell>
+
+        <!-- COLUMN 4: SaaS -->
+        <mxCell id="saas_card" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1d182b;strokeColor=#8b5cf6;strokeWidth=2;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="930" y="175" width="280" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="saas_header" value="&lt;b style=&quot;font-size: 15px; color: #d8b4fe;&quot;&gt;SaaS · Software&lt;/b&gt;&lt;br/&gt;&lt;b style=&quot;font-size: 11px; color: #e9d5ff;&quot;&gt;TURNKEY DELIVERY&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;font-size: 10px; color: #94a3b8;&quot;&gt;Complete Applications Consumed via Browser&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#8b5cf6;fillOpacity=30;strokeColor=#8b5cf6;strokeWidth=1;" vertex="1" parent="1">
+          <mxGeometry x="930" y="175" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="saas_services" value="&lt;b style=&quot;color: #c084fc;&quot;&gt;CORE AWS SERVICES:&lt;/b&gt;&lt;br/&gt;• Amazon QuickSight (BI Dashboards)&lt;br/&gt;• Amazon WorkSpaces (Cloud Desktops)&lt;br/&gt;• Amazon Connect (Contact Center SaaS)&lt;br/&gt;• Amazon Route 53 (Managed DNS SaaS)&lt;br/&gt;• Amazon Q Business / AWS AppStudio" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#131a29;strokeColor=#8b5cf6;strokeWidth=1;strokeOpacity=40;align=left;spacingLeft=15;fontColor=#e2e8f0;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="945" y="250" width="250" height="135" as="geometry" />
+        </mxCell>
+        <mxCell id="saas_resp" value="&lt;b style=&quot;color: #38bdf8; font-size: 10px;&quot;&gt;YOU MANAGE (CUSTOMER):&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;color: #94a3b8; font-size: 10px;&quot;&gt;User Accounts, Single Sign-On (SSO),&lt;br/&gt;MFA Enforcement, and Data Governance&lt;/span&gt;&lt;br/&gt;&lt;b style=&quot;color: #34d399; font-size: 10px;&quot;&gt;AWS PROVIDES:&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;color: #94a3b8; font-size: 10px;&quot;&gt;100% Application Logic, DBs, and Uptime&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0d1424;strokeColor=#334155;strokeWidth=1;align=left;spacingLeft=12;" vertex="1" parent="1">
+          <mxGeometry x="945" y="395" width="250" height="105" as="geometry" />
+        </mxCell>
+
+        <!-- Section 3: SDN & Mesh -->
+        <mxCell id="sdn_box" value="&lt;b style=&quot;color: #38bdf8; font-size: 12px;&quot;&gt;CLOUD SOFTWARE-DEFINED NETWORKING &amp;amp; GLOBAL MESH FABRIC&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;color: #94a3b8; font-size: 11px;&quot;&gt;Virtual Private Cloud (VPC) • Multi-AZ Subnets • Gateways (IGW, NAT GW) • Load Balancers (ALB, NLB) • 33+ Regions • Low-Latency (&amp;lt;2ms) Metro DWDM Fiber&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#111c30;strokeColor=#3b82f6;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="30" y="530" width="1180" height="60" as="geometry" />
+        </mxCell>
+
+        <!-- Section 4: Physical Rack Foundation -->
+        <mxCell id="rack_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0f172a;strokeColor=#64748b;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="30" y="605" width="1180" height="185" as="geometry" />
+        </mxCell>
+        <mxCell id="rack_left" value="&lt;b style=&quot;color: #f8fafc; font-size: 13px;&quot;&gt;PHYSICAL DATA CENTER RACK&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;color: #94a3b8; font-size: 10px;&quot;&gt;(100% Cloud-Provider Managed)&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;font style=&quot;font-family: monospace; font-size: 10px; color: #38bdf8;&quot;&gt;[ Top-of-Rack Switch A/B 100GbE ]&lt;br/&gt;[ Compute Blade 1 (Xeon/EPYC) ]&lt;br/&gt;[ Compute Blade 2 (Nitro SmartNIC) ]&lt;br/&gt;[ All-Flash NVMe SAN Arrays ]&lt;br/&gt;[ Dual ATS / UPS Power Feeds (A+B) ]&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1e293b;strokeColor=#475569;strokeWidth=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="45" y="620" width="280" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="rack_mid" value="&lt;b style=&quot;color: #fbbf24; font-size: 12px;&quot;&gt;PHYSICAL HARDWARE &amp;amp; FACILITY TIERS (ABSTRACTED BY CLOUD):&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;color: #cbd5e1; font-size: 11px;&quot;&gt;• &lt;b&gt;Power Infrastructure&lt;/b&gt;: Redundant utility feeds, ATS, Battery Flywheels/UPS, diesel generators&lt;br/&gt;• &lt;b&gt;Thermal Management&lt;/b&gt;: Chilled water CRAH/CRAC units maintaining 18-27°C (ASHRAE TC 9.9)&lt;br/&gt;• &lt;b&gt;Hardware Decommissioning&lt;/b&gt;: Automated disk degaussing &amp;amp; shredding (DoD 5220.22-M)&lt;br/&gt;• &lt;b&gt;Physical Perimeter&lt;/b&gt;: 24/7 armed guards, biometric checkpoints, multi-layer CCTV&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#131a29;strokeColor=#334155;strokeWidth=1;align=left;spacingLeft=15;" vertex="1" parent="1">
+          <mxGeometry x="345" y="620" width="400" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="rack_right" value="&lt;b style=&quot;color: #38bdf8; font-size: 12px;&quot;&gt;SHARED RESPONSIBILITY DEMARCATION:&lt;/b&gt;&lt;br/&gt;&lt;br/&gt;&lt;b style=&quot;color: #38bdf8; font-size: 10px;&quot;&gt;CUSTOMER: 'SECURITY IN THE CLOUD'&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;color: #e2e8f0; font-size: 10px;&quot;&gt;Customer Data, IAM, Encryption keys, Application code, and virtual network security groups.&lt;/span&gt;&lt;br/&gt;&lt;br/&gt;&lt;b style=&quot;color: #34d399; font-size: 10px;&quot;&gt;CLOUD PROVIDER: 'SECURITY OF THE CLOUD'&lt;/b&gt;&lt;br/&gt;&lt;span style=&quot;color: #e2e8f0; font-size: 10px;&quot;&gt;Physical data center security, hardware replacement, power, hypervisors, and global network backbones.&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#131a29;strokeColor=#334155;strokeWidth=1;align=left;spacingLeft=15;" vertex="1" parent="1">
+          <mxGeometry x="760" y="620" width="435" height="155" as="geometry" />
+        </mxCell>
+
+        <!-- Bottom Caption -->
+        <mxCell id="caption" value="&lt;font color=&quot;#64748b&quot; style=&quot;font-size: 11px;&quot;&gt;Figure: Comprehensive Cloud Service Delivery Model (IaaS, PaaS, FaaS, SaaS) Architecture &amp;amp; Physical Infrastructure Demarcation&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="30" y="800" width="1180" height="20" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

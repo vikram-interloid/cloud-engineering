@@ -1,0 +1,259 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1240px" height="920px" viewBox="-0.5 -0.5 1240 920" style="background-color: #0b0f19;">
+  <defs>
+    <linearGradient id="grad-iaas" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ea580c" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#c2410c" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="grad-paas" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#0369a1" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="grad-faas" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#047857" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="grad-saas" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#6d28d9" stop-opacity="0.05"/>
+    </linearGradient>
+    <linearGradient id="grad-rack" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.4"/>
+    </linearGradient>
+    <filter id="drop-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Border & Background -->
+  <rect x="10" y="10" width="1220" height="900" rx="14" fill="#0d1322" stroke="#1e293b" stroke-width="2"/>
+
+  <!-- Top Title Bar -->
+  <rect x="30" y="25" width="1180" height="65" rx="10" fill="#131c2e" stroke="#334155" stroke-width="1.5" filter="url(#drop-shadow)"/>
+  <text x="620" y="52" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="bold" text-anchor="middle">
+    Cloud Computing: Architecture, Service Delivery Models &amp; AWS Services
+  </text>
+  <text x="620" y="74" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="12" text-anchor="middle">
+    End-to-End Hierarchy from Physical Data Center Racks to MicroVMs, Managed Platforms, and Turnkey SaaS
+  </text>
+
+  <!-- Section 1: Client Ingress & Users -->
+  <rect x="30" y="105" width="1180" height="55" rx="8" fill="#111827" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <text x="50" y="137" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="13" font-weight="bold">CLIENTS &amp; INGRESS:</text>
+  <g transform="translate(210, 117)">
+    <rect x="0" y="0" width="190" height="32" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="95" y="20" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="12" text-anchor="middle">Web Browsers (HTTPS)</text>
+    
+    <rect x="210" y="0" width="190" height="32" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="305" y="20" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="12" text-anchor="middle">Mobile Apps (iOS / Android)</text>
+
+    <rect x="420" y="0" width="190" height="32" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="515" y="20" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="12" text-anchor="middle">REST / GraphQL APIs</text>
+
+    <rect x="630" y="0" width="190" height="32" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="725" y="20" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="12" text-anchor="middle">CLI &amp; DevOps Pipelines</text>
+
+    <rect x="840" y="0" width="140" height="32" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="910" y="20" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="12" text-anchor="middle">IoT &amp; Edge Sensors</text>
+  </g>
+
+  <!-- Connection Lines from Clients to Models -->
+  <line x1="620" y1="160" x2="620" y2="178" stroke="#38bdf8" stroke-width="2" stroke-dasharray="2 2"/>
+
+  <!-- 4 Service Delivery Model Columns (Y: 180 to 520) -->
+
+  <!-- COLUMN 1: IaaS (Orange) -->
+  <g transform="translate(30, 180)">
+    <rect x="0" y="0" width="280" height="340" rx="10" fill="url(#grad-iaas)" stroke="#f97316" stroke-width="2" filter="url(#drop-shadow)"/>
+    <rect x="0" y="0" width="280" height="42" rx="10 10 0 0" fill="#ea580c" fill-opacity="0.3"/>
+    <text x="140" y="26" fill="#fdba74" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" text-anchor="middle">IaaS · Infrastructure</text>
+    <text x="140" y="58" fill="#fed7aa" font-family="system-ui, sans-serif" font-size="11" font-weight="600" text-anchor="middle">MAXIMUM CONTROL</text>
+    <text x="140" y="74" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Virtual Hardware, vCPUs, Raw Storage, SDN</text>
+
+    <!-- Sub-boxes for services -->
+    <rect x="15" y="88" width="250" height="135" rx="6" fill="#131a29" stroke="#f97316" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="25" y="106" fill="#fb923c" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">CORE AWS SERVICES:</text>
+    <text x="25" y="126" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• Amazon EC2 (Virtual Servers)</text>
+    <text x="25" y="144" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• Amazon EBS (Block Storage Disks)</text>
+    <text x="25" y="162" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• Amazon VPC &amp; Subnets (SDN)</text>
+    <text x="25" y="180" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• AWS Direct Connect (Dedicated Fiber)</text>
+    <text x="25" y="198" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• AWS Outposts (On-Premises Rack)</text>
+
+    <!-- Responsibility breakdown -->
+    <rect x="15" y="233" width="250" height="95" rx="6" fill="#0d1424" stroke="#334155" stroke-width="1"/>
+    <text x="25" y="251" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="10" font-weight="bold">YOU MANAGE (CUSTOMER):</text>
+    <text x="25" y="267" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">OS, Kernel Patching, Security Firewalls,</text>
+    <text x="25" y="281" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">Runtimes, Applications, and Customer Data</text>
+    <text x="25" y="301" fill="#34d399" font-family="system-ui, sans-serif" font-size="10" font-weight="bold">AWS PROVIDES:</text>
+    <text x="25" y="317" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">Physical Racks, Hypervisor (Nitro), DWDM</text>
+  </g>
+
+  <!-- COLUMN 2: PaaS (Sky Blue) -->
+  <g transform="translate(330, 180)">
+    <rect x="0" y="0" width="280" height="340" rx="10" fill="url(#grad-paas)" stroke="#0284c7" stroke-width="2" filter="url(#drop-shadow)"/>
+    <rect x="0" y="0" width="280" height="42" rx="10 10 0 0" fill="#0284c7" fill-opacity="0.3"/>
+    <text x="140" y="26" fill="#7dd3fc" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" text-anchor="middle">PaaS · Platform</text>
+    <text x="140" y="58" fill="#bae6fd" font-family="system-ui, sans-serif" font-size="11" font-weight="600" text-anchor="middle">DEVELOPER VELOCITY</text>
+    <text x="140" y="74" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Managed Runtimes, Containers &amp; Databases</text>
+
+    <!-- Sub-boxes for services -->
+    <rect x="15" y="88" width="250" height="135" rx="6" fill="#131a29" stroke="#0284c7" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="25" y="106" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">CORE AWS SERVICES:</text>
+    <text x="25" y="126" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• AWS App Runner (Managed Containers)</text>
+    <text x="25" y="144" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• AWS Elastic Beanstalk (Web App PaaS)</text>
+    <text x="25" y="162" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• Amazon RDS / Aurora (Managed SQL)</text>
+    <text x="25" y="180" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• Amazon EKS / ECS (Managed Clusters)</text>
+    <text x="25" y="198" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• Amazon EFS (Managed Elastic NFS)</text>
+
+    <!-- Responsibility breakdown -->
+    <rect x="15" y="233" width="250" height="95" rx="6" fill="#0d1424" stroke="#334155" stroke-width="1"/>
+    <text x="25" y="251" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="10" font-weight="bold">YOU MANAGE (CUSTOMER):</text>
+    <text x="25" y="267" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">Application Code, Container Images,</text>
+    <text x="25" y="281" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">Database Schemas, and Access Policies</text>
+    <text x="25" y="301" fill="#34d399" font-family="system-ui, sans-serif" font-size="10" font-weight="bold">AWS PROVIDES:</text>
+    <text x="25" y="317" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">OS Hardening, Autoscaling, DB Patching</text>
+  </g>
+
+  <!-- COLUMN 3: FaaS (Emerald Green) -->
+  <g transform="translate(630, 180)">
+    <rect x="0" y="0" width="280" height="340" rx="10" fill="url(#grad-faas)" stroke="#10b981" stroke-width="2" filter="url(#drop-shadow)"/>
+    <rect x="0" y="0" width="280" height="42" rx="10 10 0 0" fill="#10b981" fill-opacity="0.3"/>
+    <text x="140" y="26" fill="#6ee7b7" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" text-anchor="middle">FaaS · Serverless</text>
+    <text x="140" y="58" fill="#a7f3d0" font-family="system-ui, sans-serif" font-size="11" font-weight="600" text-anchor="middle">ZERO SERVER OPS</text>
+    <text x="140" y="74" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Event-Driven MicroVMs &amp; Zero Idle Cost</text>
+
+    <!-- Sub-boxes for services -->
+    <rect x="15" y="88" width="250" height="135" rx="6" fill="#131a29" stroke="#10b981" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="25" y="106" fill="#34d399" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">CORE AWS SERVICES:</text>
+    <text x="25" y="126" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• AWS Lambda (Sub-5ms MicroVMs)</text>
+    <text x="25" y="144" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• AWS Fargate (Serverless Containers)</text>
+    <text x="25" y="162" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• Amazon DynamoDB (Serverless NoSQL)</text>
+    <text x="25" y="180" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• Amazon S3 (Serverless Object Store)</text>
+    <text x="25" y="198" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• AWS Step Functions &amp; EventBridge</text>
+
+    <!-- Responsibility breakdown -->
+    <rect x="15" y="233" width="250" height="95" rx="6" fill="#0d1424" stroke="#334155" stroke-width="1"/>
+    <text x="25" y="251" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="10" font-weight="bold">YOU MANAGE (CUSTOMER):</text>
+    <text x="25" y="267" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">Function Logic, Event Bindings, IAM Roles,</text>
+    <text x="25" y="281" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">Dependency Bundles, and Concurrency</text>
+    <text x="25" y="301" fill="#34d399" font-family="system-ui, sans-serif" font-size="10" font-weight="bold">AWS PROVIDES:</text>
+    <text x="25" y="317" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">Firecracker MicroVMs, Concurrency Auto-scale</text>
+  </g>
+
+  <!-- COLUMN 4: SaaS (Purple) -->
+  <g transform="translate(930, 180)">
+    <rect x="0" y="0" width="280" height="340" rx="10" fill="url(#grad-saas)" stroke="#8b5cf6" stroke-width="2" filter="url(#drop-shadow)"/>
+    <rect x="0" y="0" width="280" height="42" rx="10 10 0 0" fill="#8b5cf6" fill-opacity="0.3"/>
+    <text x="140" y="26" fill="#d8b4fe" font-family="system-ui, sans-serif" font-size="15" font-weight="bold" text-anchor="middle">SaaS · Software</text>
+    <text x="140" y="58" fill="#e9d5ff" font-family="system-ui, sans-serif" font-size="11" font-weight="600" text-anchor="middle">TURNKEY DELIVERY</text>
+    <text x="140" y="74" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">Complete Applications Consumed via Browser</text>
+
+    <!-- Sub-boxes for services -->
+    <rect x="15" y="88" width="250" height="135" rx="6" fill="#131a29" stroke="#8b5cf6" stroke-width="1" stroke-opacity="0.4"/>
+    <text x="25" y="106" fill="#c084fc" font-family="system-ui, sans-serif" font-size="11" font-weight="bold">CORE AWS SERVICES:</text>
+    <text x="25" y="126" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• Amazon QuickSight (BI Dashboards)</text>
+    <text x="25" y="144" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• Amazon WorkSpaces (Cloud Virtual Desktops)</text>
+    <text x="25" y="162" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• Amazon Connect (Contact Center SaaS)</text>
+    <text x="25" y="180" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• Amazon Route 53 (Managed DNS SaaS)</text>
+    <text x="25" y="198" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="11">• Amazon Q Business / AWS AppStudio</text>
+
+    <!-- Responsibility breakdown -->
+    <rect x="15" y="233" width="250" height="95" rx="6" fill="#0d1424" stroke="#334155" stroke-width="1"/>
+    <text x="25" y="251" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="10" font-weight="bold">YOU MANAGE (CUSTOMER):</text>
+    <text x="25" y="267" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">User Accounts, Single Sign-On (SSO),</text>
+    <text x="25" y="281" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">MFA Enforcement, and Data Governance</text>
+    <text x="25" y="301" fill="#34d399" font-family="system-ui, sans-serif" font-size="10" font-weight="bold">AWS PROVIDES:</text>
+    <text x="25" y="317" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">100% Application Logic, DBs, and Uptime</text>
+  </g>
+
+  <!-- Section 3: Cloud Networking & Global Foundation -->
+  <g transform="translate(30, 535)">
+    <rect x="0" y="0" width="1180" height="90" rx="8" fill="#111c30" stroke="#3b82f6" stroke-width="1.5" filter="url(#drop-shadow)"/>
+    <text x="20" y="25" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="13" font-weight="bold">CLOUD SOFTWARE-DEFINED NETWORKING &amp; GLOBAL MESH FABRIC:</text>
+    
+    <g transform="translate(20, 38)">
+      <rect x="0" y="0" width="175" height="38" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="87" y="16" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Virtual Private Cloud</text>
+      <text x="87" y="30" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="9" text-anchor="middle">VPC CIDR (10.0.0.0/16)</text>
+
+      <rect x="190" y="0" width="175" height="38" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="277" y="16" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Public / Private Subnets</text>
+      <text x="277" y="30" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="9" text-anchor="middle">Multi-AZ Network Isolation</text>
+
+      <rect x="380" y="0" width="175" height="38" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="467" y="16" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Gateways &amp; Routers</text>
+      <text x="467" y="30" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="9" text-anchor="middle">IGW, NAT GW, Transit GW</text>
+
+      <rect x="570" y="0" width="175" height="38" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="657" y="16" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Traffic Management</text>
+      <text x="657" y="30" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="9" text-anchor="middle">ALB, NLB, Route 53 DNS</text>
+
+      <rect x="760" y="0" width="180" height="38" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="850" y="16" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Geographic Regions</text>
+      <text x="850" y="30" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="9" text-anchor="middle">33+ Global Isolated Geographies</text>
+
+      <rect x="955" y="0" width="185" height="38" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+      <text x="1047" y="16" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Availability Zones</text>
+      <text x="1047" y="30" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="9" text-anchor="middle">Metro DWDM Fiber (&lt;2ms)</text>
+    </g>
+  </g>
+
+  <!-- Section 4: Physical Infrastructure (The Data Center Server Rack) -->
+  <g transform="translate(30, 640)">
+    <rect x="0" y="0" width="1180" height="200" rx="10" fill="url(#grad-rack)" stroke="#64748b" stroke-width="2" filter="url(#drop-shadow)"/>
+    
+    <!-- Left badge -->
+    <rect x="20" y="15" width="260" height="170" rx="8" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+    <text x="150" y="38" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" text-anchor="middle">PHYSICAL DATA CENTER RACK</text>
+    <text x="150" y="56" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10" text-anchor="middle">(100% Cloud-Provider Managed)</text>
+    
+    <!-- Mini diagram of rack interior -->
+    <rect x="35" y="68" width="230" height="18" rx="3" fill="#334155" stroke="#0284c7" stroke-width="1"/>
+    <text x="150" y="81" fill="#38bdf8" font-family="monospace" font-size="9" text-anchor="middle">Top-of-Rack Switch A/B (100GbE)</text>
+
+    <rect x="35" y="90" width="230" height="18" rx="3" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="150" y="103" fill="#e2e8f0" font-family="monospace" font-size="9" text-anchor="middle">Compute Blade 1 (Xeon / EPYC)</text>
+
+    <rect x="35" y="112" width="230" height="18" rx="3" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+    <text x="150" y="125" fill="#e2e8f0" font-family="monospace" font-size="9" text-anchor="middle">Compute Blade 2 (Nitro SmartNIC)</text>
+
+    <rect x="35" y="134" width="230" height="18" rx="3" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+    <text x="150" y="147" fill="#34d399" font-family="monospace" font-size="9" text-anchor="middle">All-Flash NVMe SAN / EBS Array</text>
+
+    <rect x="35" y="156" width="230" height="18" rx="3" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+    <text x="150" y="169" fill="#fbbf24" font-family="monospace" font-size="9" text-anchor="middle">Dual ATS / UPS Power Feeds (A+B)</text>
+
+    <!-- Right explanation of physical components -->
+    <g transform="translate(300, 15)">
+      <rect x="0" y="0" width="420" height="170" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="20" y="26" fill="#fbbf24" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">HARDWARE &amp; FACILITY TIERS ABSTRACTION:</text>
+      <text x="20" y="48" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="11">• &lt;b&gt;Power Infrastructure&lt;/b&gt;: Redundant utility feeds, Automatic Transfer</text>
+      <text x="20" y="64" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">   Switches (ATS), Battery Flywheels/UPS, and on-site diesel generators</text>
+      <text x="20" y="86" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="11">• &lt;b&gt;Thermal Management&lt;/b&gt;: Chilled water CRAH/CRAC units, hot/cold aisle</text>
+      <text x="20" y="102" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">   containment maintaining 18-27°C (ASHRAE TC 9.9 standards)</text>
+      <text x="20" y="124" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="11">• &lt;b&gt;Hardware Decommissioning&lt;/b&gt;: Automated disk degaussing and shredding</text>
+      <text x="20" y="140" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10">   meeting DoD 5220.22-M and NIST SP 800-88 compliance</text>
+      <text x="20" y="158" fill="#cbd5e1" font-family="system-ui, sans-serif" font-size="11">• &lt;b&gt;Physical Perimeter&lt;/b&gt;: 24/7 armed security, biometrics, CCTV surveillance</text>
+    </g>
+
+    <g transform="translate(740, 15)">
+      <rect x="0" y="0" width="420" height="170" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+      <text x="20" y="26" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="12" font-weight="bold">SHARED RESPONSIBILITY DIVIDING LINE:</text>
+      
+      <rect x="15" y="38" width="390" height="55" rx="5" fill="#1e293b" stroke="#0284c7" stroke-width="1"/>
+      <text x="25" y="54" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="10" font-weight="bold">CUSTOMER: 'SECURITY IN THE CLOUD'</text>
+      <text x="25" y="70" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="10">Customer Data, IAM, Encryption keys, Application code, and</text>
+      <text x="25" y="84" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="10">virtual network security group firewall configuration.</text>
+
+      <rect x="15" y="102" width="390" height="55" rx="5" fill="#1e293b" stroke="#10b981" stroke-width="1"/>
+      <text x="25" y="118" fill="#34d399" font-family="system-ui, sans-serif" font-size="10" font-weight="bold">CLOUD PROVIDER: 'SECURITY OF THE CLOUD'</text>
+      <text x="25" y="134" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="10">Physical data center security, hardware replacement, power,</text>
+      <text x="25" y="148" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="10">hypervisors, subsea cables, and global network infrastructure.</text>
+    </g>
+  </g>
+
+  <!-- Bottom status caption -->
+  <text x="620" y="885" fill="#64748b" font-family="system-ui, sans-serif" font-size="11" text-anchor="middle">
+    Figure: Comprehensive Cloud Service Delivery Model (IaaS, PaaS, FaaS, SaaS) Architecture &amp; Physical Infrastructure Demarcation
+  </text>
+</svg>

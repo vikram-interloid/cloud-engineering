@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "db987765c91f8791",
+        "id": "9b051c60bbd3e661",
         "type": "tabs",
         "children": [
           {
-            "id": "c374ac779d747426",
+            "id": "d72f67a08e7e8868",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "00-Foundations/01-cloud-computing/06_Cloud_Service_Models_IaaS_PaaS_SaaS.md",
+                "file": "00-Foundations/01-cloud-computing/03_Traditional_Data_Center_Architecture.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "06_Cloud_Service_Models_IaaS_PaaS_SaaS"
+              "title": "03_Traditional_Data_Center_Architecture"
             }
           }
         ]
@@ -83,7 +83,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 367.55078125
+    "width": 276.82421875
   },
   "right": {
     "id": "27691f31f8aad48a",
@@ -179,45 +179,47 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c374ac779d747426",
+  "active": "d72f67a08e7e8868",
   "lastOpenFiles": [
-    "02-cloud-providers/aws/01-compute/ecs/README.md",
-    "00-Foundations/01-cloud-computing/06_Cloud_Service_Models_IaaS_PaaS_SaaS.md",
-    "02-cloud-providers/aws/02-storage/README.md",
-    "Excalidraw/NIST_SP_800_145_Cloud_Model.excalidraw.md",
-    "02-cloud-providers/aws/02-storage/efs/README.md",
-    "02-cloud-providers/aws/02-storage/glacier/README.md",
-    "02-cloud-providers/aws/02-storage/s3/README.md",
-    "02-cloud-providers/aws/02-storage/ebs/README.md",
+    "00-Foundations/01-cloud-computing/01_What_is_Cloud_Computing.md",
+    "00-Foundations/01-cloud-computing/02_Evolution_of_Computing_OnPrem_to_Cloud.md",
+    "00-Foundations/01-cloud-computing/03_Traditional_Data_Center_Architecture.md",
+    "00-Foundations/01-cloud-computing/10_Cloud_Economics_CapEx_vs_OpEx.md",
+    "00-Foundations/01-cloud-computing/05_Cloud_Computing_Characteristics.md",
+    "Untitled Kanban.md",
+    "00-Foundations/01-cloud-computing/09_Cloud_Shared_Responsibility_Model.md",
+    "00-Foundations/01-cloud-computing/08_Cloud_Infrastructure_Components.md",
+    "00-Foundations/01-cloud-computing/assets/cloud_service_models.drawio.svg",
+    "00-Foundations/01-cloud-computing/assets/cloud_service_models.drawio",
+    "02-cloud-providers/aws/09-architecture-patterns/event-driven-architecture/README.md",
+    "02-cloud-providers/aws/10-hands-on-labs/create-vpc/README.md",
     "02-cloud-providers/aws/01-compute/ec2/README.md",
-    "02-cloud-providers/aws/01-compute/app-runner/README.md",
-    "02-cloud-providers/aws/00-introduction/pricing-model.md",
-    "02-cloud-providers/aws/00-introduction/accounts-and-organizations.md",
-    "00-Foundations/01-cloud-computing/assets/data-center-rack.png",
+    "00-Foundations/05-networking-fundamentals/08_Cloud_Software_Defined_Networking_SDN.md",
+    "00-Foundations/05-networking-fundamentals/07_Network_Security_Firewalls_and_NAT.md",
+    "00-Foundations/05-networking-fundamentals/06_Application_Protocols_HTTP_HTTPS_TLS.md",
+    "00-Foundations/05-networking-fundamentals/05_Transport_Protocols_TCP_UDP.md",
+    "00-Foundations/05-networking-fundamentals/04_Core_Network_Protocols.md",
+    "00-Foundations/05-networking-fundamentals/03_Routing_and_Switching.md",
+    "00-Foundations/05-networking-fundamentals/02_IP_Addressing_and_Subnetting.md",
+    "00-Foundations/05-networking-fundamentals/01_OSI_and_TCP_IP_Models.md",
+    "00-Foundations/01-cloud-computing/README.md",
+    "00-Foundations/01-cloud-computing/07_Cloud_Deployment_Models.md",
+    "00-Foundations/01-cloud-computing/06_Cloud_Service_Models_IaaS_PaaS_SaaS.md",
+    "00-Foundations/01-cloud-computing/04_Why_Cloud_Computing.md",
+    "00-Foundations/01-cloud-computing/assets/mainframe.png",
     "00-Foundations/01-cloud-computing/assets/image.png",
+    "02-cloud-providers/aws/00-introduction/accounts-and-organizations.md",
+    "02-cloud-providers/aws/10-hands-on-labs/deploy-ec2/README.md",
+    "02-cloud-providers/aws/10-hands-on-labs/deploy-container-application/README.md",
+    "02-cloud-providers/aws/06-integration/ses",
+    "02-cloud-providers/aws/06-integration/bedrock",
+    "00-Foundations/01-cloud-computing/assets/data-center-rack.png",
     "00-Foundations/01-cloud-computing/assets",
     "Untitled",
-    "00-Foundations/06-compute-fundamentals/06_Scaling_and_Performance_Tuning.md",
-    "00-Foundations/06-compute-fundamentals/04_Containerization_and_Linux_Primitives.md",
-    "00-Foundations/06-compute-fundamentals/03_Virtualization_and_Hypervisors.md",
-    "00-Foundations/06-compute-fundamentals/02_Operating_System_Kernels_and_Processes.md",
-    "00-Foundations/06-compute-fundamentals/01_Computer_Architecture_CPU_RAM_Bus.md",
-    "02-cloud-providers/aws/00-introduction/overview.md",
-    "02-cloud-providers/aws/00-introduction/global-infrastructure.md",
-    "00-Foundations/07-storage-fundamentals/02_Hard_Drives_SSDs_and_NVMe.md",
-    "00-Foundations/07-storage-fundamentals/01_Storage_Types_Block_File_Object.md",
-    "00-Foundations/README.md",
-    "00-Foundations/07-storage-fundamentals/README.md",
-    "00-Foundations/07-storage-fundamentals/06_Storage_Tiering_Lifecycle_and_Backup.md",
-    "00-Foundations/07-storage-fundamentals/05_Object_Storage_Architecture.md",
-    "00-Foundations/07-storage-fundamentals/04_File_Systems_and_Protocols.md",
     "00-Foundations/07-storage-fundamentals",
     "00-Foundations/06-compute-fundamentals",
     "00-Foundations/05-networking-fundamentals",
     "02-cloud-providers/aws/10-hands-on-labs/deploy-serverless-api",
-    "02-cloud-providers/aws/10-hands-on-labs/deploy-ec2",
-    "02-cloud-providers/aws/10-hands-on-labs/deploy-container-application",
-    "02-cloud-providers/aws/10-hands-on-labs/create-vpc",
-    "02-cloud-providers/aws/10-hands-on-labs"
+    "02-cloud-providers/aws/10-hands-on-labs/deploy-ec2"
   ]
 }

@@ -108,19 +108,31 @@ flowchart TB
     style L9 fill:#059669,fill-opacity:0.15,stroke:#059669,stroke-width:1.5px,color:inherit
 ```
 
-### Responsibility Breakdown:
+### Responsibility Breakdown Across Layers:
 
-| Layer | Traditional On-Premises | IaaS | PaaS | FaaS (Serverless) | SaaS |
+| Architectural Tier | Traditional On-Premises | <span style="background-color:rgba(249,115,22,0.15); color:#f97316; padding:2px 8px; border-radius:4px; font-weight:bold; border:1px solid #f97316;">IaaS</span> | <span style="background-color:rgba(56,189,248,0.15); color:#38bdf8; padding:2px 8px; border-radius:4px; font-weight:bold; border:1px solid #0284c7;">PaaS</span> | <span style="background-color:rgba(52,211,153,0.15); color:#34d399; padding:2px 8px; border-radius:4px; font-weight:bold; border:1px solid #10b981;">FaaS (Serverless)</span> | <span style="background-color:rgba(192,132,252,0.15); color:#c084fc; padding:2px 8px; border-radius:4px; font-weight:bold; border:1px solid #8b5cf6;">SaaS</span> |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Data & Access** | Customer | Customer | Customer | Customer | Customer |
-| **Application Code**| Customer | Customer | Customer | Customer | **Cloud Provider** |
-| **Runtimes & Libs**| Customer | Customer | **Cloud Provider** | **Cloud Provider** | **Cloud Provider** |
-| **Middleware** | Customer | Customer | **Cloud Provider** | **Cloud Provider** | **Cloud Provider** |
-| **Operating System**| Customer | Customer | **Cloud Provider** | **Cloud Provider** | **Cloud Provider** |
-| **Hypervisor** | Customer | **Cloud Provider** | **Cloud Provider** | **Cloud Provider** | **Cloud Provider** |
-| **Server Hardware** | Customer | **Cloud Provider** | **Cloud Provider** | **Cloud Provider** | **Cloud Provider** |
-| **Storage Fabric** | Customer | **Cloud Provider** | **Cloud Provider** | **Cloud Provider** | **Cloud Provider** |
-| **Physical Facility**| Customer | **Cloud Provider** | **Cloud Provider** | **Cloud Provider** | **Cloud Provider** |
+| **Data & Access Governance** | <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#38bdf8; font-weight:600;">Customer</span> |
+| **Application & Code** | <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> |
+| **Runtimes & Frameworks** | <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> |
+| **Middleware & Web Servers**| <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> |
+| **Operating System & Kernel**| <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> |
+| **Hypervisor & Isolation** | <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> |
+| **Server Compute (CPU/RAM)**| <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> |
+| **Storage Fabric & Disks** | <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> |
+| **Physical Facility & Rack**| <span style="color:#38bdf8; font-weight:600;">Customer</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> | <span style="color:#34d399; font-weight:600;">Cloud Provider</span> |
+
+---
+
+### Master Architecture & Service Delivery Models Diagram
+
+The full architectural hierarchy—connecting client ingress, the four service models, AWS building blocks, software-defined networking, and the physical server rack foundation—is illustrated in the vector architecture diagram below:
+
+![Cloud Service Models & AWS Architecture](assets/cloud_service_models.drawio.svg)
+
+> **Draw.io Diagram Reference**:
+> - **Vector Diagram**: [assets/cloud_service_models.drawio.svg](assets/cloud_service_models.drawio.svg)
+> - **Editable Draw.io Source**: [assets/cloud_service_models.drawio](assets/cloud_service_models.drawio) *(Can be opened and edited directly inside Obsidian using the Draw.io plugin)*
 
 ---
 
@@ -138,21 +150,35 @@ In the cloud computing paradigm, this entire physical rack tier—including powe
 
 ### AWS Services Across All Service Delivery Models
 
-The table below maps core Amazon Web Services (AWS) offerings across the four cloud service delivery models, illustrating how cloud architectures balance control versus operational abstraction:
+The table below maps core Amazon Web Services (AWS) offerings across the four cloud service delivery models, color-coded by abstraction tier:
 
-| Domain / Pillar | IaaS (Infrastructure as a Service) | PaaS (Platform as a Service) | FaaS / Serverless (Function as a Service) | SaaS (Software as a Service) |
+| Domain / Pillar | <span style="background-color:rgba(249,115,22,0.15); color:#f97316; padding:3px 10px; border-radius:6px; font-weight:bold; border:1px solid #f97316;">IaaS · Infrastructure</span> | <span style="background-color:rgba(56,189,248,0.15); color:#38bdf8; padding:3px 10px; border-radius:6px; font-weight:bold; border:1px solid #0284c7;">PaaS · Platform</span> | <span style="background-color:rgba(52,211,153,0.15); color:#34d399; padding:3px 10px; border-radius:6px; font-weight:bold; border:1px solid #10b981;">FaaS · Serverless</span> | <span style="background-color:rgba(192,132,252,0.15); color:#c084fc; padding:3px 10px; border-radius:6px; font-weight:bold; border:1px solid #8b5cf6;">SaaS · Software</span> |
 | :--- | :--- | :--- | :--- | :--- |
-| **Core Compute** | Amazon EC2 (Elastic Compute Cloud), AWS Outposts | AWS App Runner, AWS Elastic Beanstalk | AWS Lambda, AWS Lambda@Edge | AWS AppStudio, Amazon WorkSpaces |
-| **Container Platforms**| Amazon EC2 instances running self-managed Docker / Kubernetes | Amazon ECS (EC2 launch type), Amazon EKS (EC2 managed nodes) | AWS Fargate (Serverless container execution) | AWS App Runner (Turnkey container deployment) |
-| **Storage Systems** | Amazon EBS (Elastic Block Store) | Amazon EFS (Elastic File System), Amazon FSx (ONTAP, Lustre) | Amazon S3 (Simple Storage Service - REST API) | AWS Backup (Turnkey policy-based backup SaaS) |
-| **Relational Database**| Amazon EC2 hosting self-managed PostgreSQL / MySQL / Oracle | Amazon RDS (PostgreSQL, MySQL, MariaDB, Oracle, SQL Server) | Amazon Aurora Serverless v2 | AWS Database Migration Service (DMS Console) |
-| **NoSQL Database** | Amazon EC2 hosting self-managed MongoDB / Cassandra | Amazon DocumentDB, Amazon Keyspaces | Amazon DynamoDB (Serverless key-value & document) | Amazon Timestream |
-| **Networking & CDN** | Amazon VPC, Subnets, Route Tables, AWS Direct Connect | AWS Application Load Balancer (ALB), AWS Transit Gateway | AWS API Gateway, Amazon CloudFront (Edge Functions) | Amazon Route 53 (Managed DNS Resolver SaaS) |
-| **Messaging & Queues** | Amazon EC2 hosting self-managed RabbitMQ / Kafka | Amazon MQ (Managed ActiveMQ / RabbitMQ), Amazon MSK | Amazon SQS (Simple Queue Service), Amazon SNS | Amazon Simple Email Service (SES) |
-| **Analytics & Big Data**| Amazon EC2 clusters running custom Apache Spark / Hadoop | Amazon EMR (Elastic MapReduce on EC2) | Amazon Athena (Serverless SQL), Amazon Redshift Serverless | Amazon QuickSight (Business Intelligence SaaS) |
-| **Artificial Intelligence**| Amazon EC2 GPU Instances (P4d, P5, G5), AWS Trainium / Inferentia | Amazon SageMaker Studio, SageMaker Training Instances | Amazon Bedrock (Serverless Foundation Model APIs) | Amazon Q Business, Amazon Rekognition, Amazon Textract |
-| **Developer Tools** | Amazon EC2 running self-managed Jenkins or GitLab runners | AWS CodeBuild, AWS CodePipeline | AWS Step Functions (Serverless workflow state machines) | AWS CodeCatalyst, Amazon Cloud9 |
-| **Business Applications**| N/A | N/A | N/A | Amazon Connect (Contact Center), Amazon WorkMail, Amazon Wickr |
+| **Core Compute** | • **Amazon EC2** (Virtual Servers)<br/>• **AWS Outposts** (On-premise racks)<br/>• **EC2 Bare Metal** Instances | • **AWS App Runner** (Auto container runtimes)<br/>• **AWS Elastic Beanstalk** (Managed app platform) | • **AWS Lambda** (Event-driven microVMs)<br/>• **AWS Lambda@Edge** (CDN compute) | • **AWS AppStudio** (No-code enterprise apps)<br/>• **Amazon WorkSpaces** (Virtual Desktop SaaS) |
+| **Container Platforms** | • **Amazon EC2** with self-managed Docker<br/>• Self-hosted Kubernetes (`kOps`, `kubeadm`) | • **Amazon ECS** (EC2 launch type)<br/>• **Amazon EKS** (EC2 managed node groups) | • **AWS Fargate** (Serverless microVM containers for ECS and EKS) | • **AWS App Runner** (Turnkey container-to-service deployment) |
+| **Storage Systems** | • **Amazon EBS** (Elastic Block Store)<br/>• **EC2 Instance Store** (Direct NVMe) | • **Amazon EFS** (Elastic File System NFSv4)<br/>• **Amazon FSx** (Lustre, NetApp ONTAP, OpenZFS) | • **Amazon S3** (Serverless object store)<br/>• **Amazon S3 Express One Zone** (Sub-10ms) | • **AWS Backup** (Centralized policy-based backup console) |
+| **Relational Database** | • **Amazon EC2** self-hosting PostgreSQL, MySQL, Oracle, or Microsoft SQL Server | • **Amazon RDS** (PostgreSQL, MySQL, MariaDB, Oracle, SQL Server)<br/>• **Amazon Aurora** (Multi-AZ cluster) | • **Amazon Aurora Serverless v2** (Auto-scaling ACUs based on live query demand) | • **AWS Database Migration Service** (Turnkey migration console) |
+| **NoSQL & Cache** | • **Amazon EC2** self-hosting MongoDB, Redis, Apache Cassandra, or ScyllaDB | • **Amazon DocumentDB** (MongoDB API)<br/>• **Amazon Keyspaces** (Cassandra API)<br/>• **Amazon MemoryDB** (In-memory Redis) | • **Amazon DynamoDB** (Serverless key-value)<br/>• **Amazon DynamoDB Global Tables** (Multi-Region) | • **Amazon Timestream** (Time-series data SaaS)<br/>• **Amazon OpenSearch Serverless** |
+| **Networking & CDN** | • **Amazon VPC** (Virtual Private Cloud)<br/>• **Subnets, Route Tables, Internet Gateways**<br/>• **AWS Direct Connect** (Dedicated fiber) | • **AWS Application Load Balancer** (ALB)<br/>• **AWS Network Load Balancer** (NLB)<br/>• **AWS Transit Gateway** | • **AWS API Gateway** (Serverless HTTP/WebSocket)<br/>• **Amazon CloudFront** (Global edge CDN) | • **Amazon Route 53** (Managed global DNS resolver SaaS)<br/>• **AWS Global Accelerator** |
+| **Messaging & Queues** | • **Amazon EC2** self-hosting RabbitMQ, Apache Kafka, or ActiveMQ | • **Amazon MQ** (Managed ActiveMQ / RabbitMQ)<br/>• **Amazon MSK** (Managed Streaming for Kafka) | • **Amazon SQS** (Simple Queue Service FIFO/Std)<br/>• **Amazon SNS** (Pub/sub topic fan-out)<br/>• **Amazon EventBridge** (Serverless event bus) | • **Amazon Simple Email Service** (SES)<br/>• **Amazon Pinpoint** (Targeted customer push) |
+| **Analytics & Big Data** | • **Amazon EC2** self-hosting Apache Hadoop, Apache Spark, or Presto clusters | • **Amazon EMR** (Managed Elastic MapReduce)<br/>• **Amazon Managed Service for Apache Flink** | • **Amazon Athena** (Interactive serverless SQL)<br/>• **Amazon Redshift Serverless** (Data warehouse)<br/>• **AWS Glue** (Serverless serverless ETL) | • **Amazon QuickSight** (Cloud-powered BI reporting & dashboards SaaS) |
+| **Artificial Intelligence** | • **EC2 Accelerated Instances** (NVIDIA H100 / A100 GPUs, P4d/P5)<br/>• **AWS Trainium & Inferentia** | • **Amazon SageMaker Studio** (IDE platform)<br/>• **Amazon SageMaker Training Jobs & Endpoints** | • **Amazon Bedrock** (Serverless GenAI API for Claude, Llama 3, Titan) | • **Amazon Q Business** (Generative AI assistant)<br/>• **Amazon Rekognition** (Computer vision)<br/>• **Amazon Textract** (Document extraction) |
+| **Developer Tools** | • **Amazon EC2** self-hosting Jenkins masters, GitLab runners, or SonarQube | • **AWS CodeBuild** (Ephemeral build containers)<br/>• **AWS CodePipeline** (CI/CD delivery platform) | • **AWS Step Functions** (Serverless distributed state machine workflows) | • **AWS CodeCatalyst** (Unified software development SaaS)<br/>• **AWS Cloud9** (Browser IDE SaaS) |
+| **Business Applications** | • N/A (Standardized business apps belong to SaaS) | • N/A (Platform focus) | • N/A (Micro-service focus) | • **Amazon Connect** (Cloud Contact Center SaaS)<br/>• **Amazon WorkMail** (Corporate email)<br/>• **Amazon Wickr** (End-to-end encrypted chat) |
+
+---
+
+### AWS Service Implementations (IaC & SDK)
+
+For complete Infrastructure as Code (AWS CDK TypeScript & Python, CloudFormation/SAM YAML) and SDK code implementations (Node.js/TypeScript v3 and Python boto3) for each service model, refer to the dedicated AWS service modules:
+
+| Delivery Model | AWS Service Architecture | Implementation Guide & Code Blocks |
+| :--- | :--- | :--- |
+| **IaaS** | Amazon EC2 + GP3 EBS + Security Group | [[02-cloud-providers/aws/01-compute/ec2/README#5-infrastructure-as-code--sdk-implementations|EC2 IaC & SDK Reference]] |
+| **PaaS** | AWS App Runner Managed Container API | [[02-cloud-providers/aws/01-compute/app-runner/README#3-infrastructure-as-code--sdk-implementations|App Runner IaC & SDK Reference]] |
+| **FaaS** | AWS Lambda Serverless Worker + SQS | [[02-cloud-providers/aws/01-compute/lambda/README#5-infrastructure-as-code--sdk-implementations|Lambda IaC & SDK Reference]] |
+| **SaaS / API** | Amazon Bedrock Generative AI & Guardrails | [[02-cloud-providers/aws/06-integration/bedrock/README#2-infrastructure-as-code--sdk-implementations|Bedrock IaC & SDK Reference]] |
+| **SaaS / API** | Amazon SES Transactional Email Delivery | [[02-cloud-providers/aws/06-integration/ses/README#2-infrastructure-as-code--sdk-implementations|SES IaC & SDK Reference]] |
 
 ---
 
@@ -263,7 +289,7 @@ The table below maps core Amazon Web Services (AWS) offerings across the four cl
 
 Continue your cloud computing learning journey:
 
-> ➡️ **Next Module**: [[07_Cloud_Deployment_Models|07 · Cloud Deployment Models]]  
+> **Next Module**: [[07_Cloud_Deployment_Models|07 · Cloud Deployment Models]]  
 > *Exploring Public Cloud, Private Cloud, Hybrid Cloud interconnects (Direct Connect / ExpressRoute), Multi-Cloud hedging, and distributed edge architectures.*
 
 ---

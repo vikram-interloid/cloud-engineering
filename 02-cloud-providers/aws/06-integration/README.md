@@ -34,3 +34,5 @@ flowchart TD
 - **[[eventbridge/README|EventBridge]]** — Universal event bus, content-based pattern matching, and registry.
 - **[[step-functions/README|Step Functions]]** — Serverless workflow orchestration and Saga distributed transactions.
 - **[[api-gateway/README|API Gateway]]** — REST, HTTP, and WebSocket APIs with built-in governance.
+- **[[bedrock/README|Bedrock]]** — Foundation model APIs, generative AI guardrails, and model invocation.
+- **[[ses/README|SES]]** — Simple Email Service, transactional email delivery, and domain verification.

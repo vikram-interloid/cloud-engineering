@@ -88,16 +88,16 @@ flowchart LR
 
 ### Detailed Ownership Breakdown by Service Model
 
-| Architectural Layer | On-Premises | IaaS (e.g., EC2, Azure VM) | PaaS (e.g., App Service, Cloud Run) | FaaS (e.g., Lambda, Functions) | SaaS (e.g., M365, Salesforce) |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Data Classification & Security** | Customer | **Customer** | **Customer** | **Customer** | **Customer** |
-| **Identity & Access Management (IAM)**| Customer | **Customer** | **Customer** | **Customer** | **Customer** |
-| **Application Logic & Code** | Customer | **Customer** | **Customer** | **Customer** | Provider |
-| **Runtime & Middleware** | Customer | **Customer** | Provider | Provider | Provider |
-| **Operating System Patching** | Customer | **Customer** | Provider | Provider | Provider |
-| **Hypervisor & Virtualization** | Customer | Provider | Provider | Provider | Provider |
-| **Server & Storage Hardware** | Customer | Provider | Provider | Provider | Provider |
-| **Physical Data Center Facility** | Customer | Provider | Provider | Provider | Provider |
+| Architectural Layer                    | On-Premises | IaaS (e.g., EC2, Azure VM) | PaaS (e.g., App Service, Cloud Run) | FaaS (e.g., Lambda, Functions) | SaaS (e.g., M365, Salesforce) |
+| :------------------------------------- | :---------- | :------------------------- | :---------------------------------- | :----------------------------- | :---------------------------- |
+| **Data Classification & Security**     | Customer    | **Customer**               | **Customer**                        | **Customer**                   | **Customer**                  |
+| **Identity & Access Management (IAM)** | Customer    | **Customer**               | **Customer**                        | **Customer**                   | **Customer**                  |
+| **Application Logic & Code**           | Customer    | **Customer**               | **Customer**                        | **Customer**                   | Provider                      |
+| **Runtime & Middleware**               | Customer    | **Customer**               | Provider                            | Provider                       | Provider                      |
+| **Operating System Patching**          | Customer    | **Customer**               | Provider                            | Provider                       | Provider                      |
+| **Hypervisor & Virtualization**        | Customer    | Provider                   | Provider                            | Provider                       | Provider                      |
+| **Server & Storage Hardware**          | Customer    | Provider                   | Provider                            | Provider                       | Provider                      |
+| **Physical Data Center Facility**      | Customer    | Provider                   | Provider                            | Provider                       | Provider                      |
 
 ---
 

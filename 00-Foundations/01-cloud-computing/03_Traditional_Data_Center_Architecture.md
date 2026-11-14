@@ -77,51 +77,146 @@ The industry standard framework for rating data center availability and physical
 Traditional enterprise data centers historically utilized Cisco's **Core-Aggregation-Access** hierarchical tree. Hyperscale cloud architectures completely abandoned this topology in favor of **Spine-Leaf (Clos)** fabrics.
 
 ```mermaid
+
 flowchart TD
-    subgraph LEGACY["TRADITIONAL 3-TIER TREE (NORTH-SOUTH OPTIMIZED)"]
+
+    subgraph LEGACY["TRADITIONAL 3-TIER TREE — HIERARCHICAL ARCHITECTURE"]
         direction TB
-        CORE["Core Switches (L3 Backbone Routing)"]
-        AGG1["Aggregation Switch A"]
-        AGG2["Aggregation Switch B"]
-        ACC1["Top-of-Rack Access 1"]
-        ACC2["Top-of-Rack Access 2"]
-        CORE --- AGG1 & AGG2
-        AGG1 --- ACC1 & ACC2
-        AGG2 --- ACC1 & ACC2
-        STP_NOTE["Spanning Tree Protocol (STP) blocks redundant links to prevent loops"]
+
+        INTERNET["Internet / WAN"]
+        FW["Firewall / Edge Router"]
+
+        CORE1["Core Switch 1<br/>L3 Backbone Routing"]
+        CORE2["Core Switch 2<br/>Redundant Core"]
+
+        AGG1["Aggregation Switch A<br/>VLAN Routing / ACL"]
+        AGG2["Aggregation Switch B<br/>VLAN Routing / ACL"]
+
+        ACC1["ToR Access Switch 1"]
+        ACC2["ToR Access Switch 2"]
+        ACC3["ToR Access Switch 3"]
+        ACC4["ToR Access Switch 4"]
+
+        subgraph LEGACY_RACKS["SERVER RACKS"]
+            direction LR
+            SRV1["Web Servers"]
+            SRV2["Application Servers"]
+            SRV3["Database Servers"]
+            SRV4["Storage Systems"]
+        end
+
+        INTERNET --> FW
+        FW --> CORE1 & CORE2
+
+        CORE1 --- AGG1
+        CORE1 --- AGG2
+        CORE2 --- AGG1
+        CORE2 --- AGG2
+
+        AGG1 --- ACC1
+        AGG1 --- ACC2
+        AGG2 --- ACC3
+        AGG2 --- ACC4
+
+        ACC1 --> SRV1
+        ACC2 --> SRV2
+        ACC3 --> SRV3
+        ACC4 --> SRV4
+
+        STP["STP / RSTP<br/>Redundant Layer-2 paths may be blocked to prevent loops"]
+
+        TREE_NOTE["Traffic Path<br/>Access → Aggregation → Core → Aggregation → Access<br/>Multiple hierarchical layers"]
+
+        LEGACY_LIMIT["Limitations<br/>• Potential oversubscription<br/>• Variable traffic hops<br/>• Blocked redundant L2 links<br/>• Scaling can require higher-tier upgrades"]
     end
 
-    subgraph SPINE_LEAF["MODERN CLOUD SPINE-LEAF CLOS (EAST-WEST OPTIMIZED)"]
+    subgraph SPINE_LEAF["MODERN CLOUD SPINE-LEAF — CLOS FABRIC"]
         direction TB
-        SP1["Spine 1"]
-        SP2["Spine 2"]
-        SP3["Spine 3"]
-        SP4["Spine 4"]
-        LF1["Leaf Switch 1 (TOR)"]
-        LF2["Leaf Switch 2 (TOR)"]
-        LF3["Leaf Switch 3 (TOR)"]
-        LF4["Leaf Switch 4 (TOR)"]
+
+        BORDER["Border Leaf / Edge Router"]
+        FW2["Firewall / Network Services"]
+
+        subgraph SPINE_LAYER["SPINE LAYER — FABRIC BACKBONE"]
+            direction LR
+            SP1["Spine 1"]
+            SP2["Spine 2"]
+            SP3["Spine 3"]
+            SP4["Spine 4"]
+        end
+
+        subgraph LEAF_LAYER["LEAF LAYER — SERVER CONNECTIVITY"]
+            direction LR
+            LF1["Leaf 1 (ToR)"]
+            LF2["Leaf 2 (ToR)"]
+            LF3["Leaf 3 (ToR)"]
+            LF4["Leaf 4 (ToR)"]
+        end
+
+        subgraph CLOUD_RACKS["COMPUTE / STORAGE RACKS"]
+            direction LR
+            CR1["Web / API Servers"]
+            CR2["Application / Workers"]
+            CR3["Database Cluster"]
+            CR4["Storage / Kubernetes"]
+        end
+
+        BORDER --> FW2
+        FW2 --> SP1
 
         LF1 --- SP1 & SP2 & SP3 & SP4
         LF2 --- SP1 & SP2 & SP3 & SP4
         LF3 --- SP1 & SP2 & SP3 & SP4
         LF4 --- SP1 & SP2 & SP3 & SP4
-        ECMP_NOTE["Equal-Cost Multi-Path (ECMP): Every server is exactly 2 hops away"]
+
+        LF1 --> CR1
+        LF2 --> CR2
+        LF3 --> CR3
+        LF4 --> CR4
+
+        ECMP["ECMP<br/>Equal-Cost Multi-Path Routing<br/>Traffic distributed across available spine paths"]
+
+        ROUTING["Routing Fabric<br/>BGP / EVPN / VXLAN<br/>Underlay + Overlay Networking"]
+
+        SL_NOTE["Traffic Path<br/>Source Leaf → Spine → Destination Leaf<br/>Predictable 2 switch hops between different leaves"]
+
+        SL_BENEFITS["Advantages<br/>• Multiple active paths<br/>• Horizontal scalability<br/>• High East-West bandwidth<br/>• Better path utilization"]
     end
 
     LEGACY ~~~ SPINE_LEAF
 
-    %% Theme Styling
-    style LEGACY fill:#ef4444,fill-opacity:0.08,stroke:#ef4444,stroke-width:2px,color:inherit
-    style SPINE_LEAF fill:#10b981,fill-opacity:0.08,stroke:#10b981,stroke-width:2px,color:inherit
+    %% Legacy styling
+    style LEGACY fill:#ef4444,fill-opacity:0.06,stroke:#ef4444,stroke-width:2px,color:inherit
+    style LEGACY_RACKS fill:#ef4444,fill-opacity:0.04,stroke:#ef4444,stroke-width:1px,color:inherit
+    style SPINE_LEAF fill:#10b981,fill-opacity:0.06,stroke:#10b981,stroke-width:2px,color:inherit
+    style SPINE_LAYER fill:#3b82f6,fill-opacity:0.08,stroke:#3b82f6,stroke-width:1px,color:inherit
+    style LEAF_LAYER fill:#10b981,fill-opacity:0.08,stroke:#10b981,stroke-width:1px,color:inherit
+    style CLOUD_RACKS fill:#10b981,fill-opacity:0.04,stroke:#10b981,stroke-width:1px,color:inherit
 
+    %% Legacy nodes
     classDef legNode fill:#ef4444,fill-opacity:0.15,stroke:#ef4444,stroke-width:1.5px,color:inherit
-    class CORE,AGG1,AGG2,ACC1,ACC2 legNode
+    class CORE1,CORE2,AGG1,AGG2,ACC1,ACC2,ACC3,ACC4 legNode
 
-    classDef slNode fill:#10b981,fill-opacity:0.15,stroke:#10b981,stroke-width:1.5px,color:inherit
-    class SP1,SP2,SP3,SP4,LF1,LF2,LF3,LF4 slNode
+    %% Spine nodes
+    classDef spineNode fill:#3b82f6,fill-opacity:0.18,stroke:#3b82f6,stroke-width:1.5px,color:inherit
+    class SP1,SP2,SP3,SP4 spineNode
 
-    linkStyle default stroke:#64748b,stroke-width:2px
+    %% Leaf nodes
+    classDef leafNode fill:#10b981,fill-opacity:0.18,stroke:#10b981,stroke-width:1.5px,color:inherit
+    class LF1,LF2,LF3,LF4 leafNode
+
+    %% Endpoints
+    classDef endpoint fill:#64748b,fill-opacity:0.15,stroke:#94a3b8,stroke-width:1.5px,color:inherit
+    class SRV1,SRV2,SRV3,SRV4,CR1,CR2,CR3,CR4 endpoint
+
+    %% Notes
+    classDef note fill:#eab308,fill-opacity:0.12,stroke:#eab308,stroke-width:1px,color:inherit
+    class STP,TREE_NOTE,LEGACY_LIMIT,ECMP,ROUTING,SL_NOTE,SL_BENEFITS note
+
+    classDef external fill:#8b5cf6,fill-opacity:0.15,stroke:#8b5cf6,stroke-width:1.5px,color:inherit
+    class INTERNET,FW,BORDER,FW2 external
+
+    linkStyle default stroke:#64748b,stroke-width:1.5px
+
 ```
 
 ### Why Traditional Data Center Networking Failed at Scale:
@@ -145,51 +240,88 @@ flowchart TD
 Data centers traditionally deployed three distinct storage topologies before the advent of software-defined cloud storage:
 
 ```mermaid
-flowchart TD
-    subgraph DAS_TOP["1. DIRECT ATTACHED STORAGE (DAS)"]
+
+%%{init: {"flowchart": {"nodeSpacing": 30, "rankSpacing": 50, "curve": "linear"}}}%%
+flowchart LR
+    subgraph DAS["1. DAS · Direct Attached"]
         direction TB
-        DAS_SRV["Host Server Chassis"]
-        DAS_BUS["Internal PCIe / SAS Controller"]
-        DAS_DISK["Local HDDs / SSDs"]
-        DAS_SRV --- DAS_BUS --- DAS_DISK
-        DAS_DESC["Fast & simple; isolated to 1 physical machine; host failure loses access"]
+        D1["Application"]
+        D2["Host Filesystem"]
+        D3["Storage Controller"]
+        D4["Local HDD / SSD / NVMe"]
+        D1 --> D2 --> D3 --> D4
+        D5["Block I/O<br/>Local Access<br/>Single Host"]
+        D4 ~~~ D5
     end
 
-    subgraph NAS_TOP["2. NETWORK ATTACHED STORAGE (NAS)"]
+    subgraph NAS["2. NAS · Network Attached"]
         direction TB
-        NAS_CLI["Client Workstations & Servers"]
-        NAS_NET["Standard IP / Ethernet Network"]
-        NAS_APP["Dedicated NAS Storage Appliance (NFS / SMB)"]
-        NAS_CLI --- NAS_NET --- NAS_APP
-        NAS_DESC["File-level sharing; high latency; unsuitable for heavy transactional DBs"]
+        N1["Client / Server"]
+        N2["NFS / SMB"]
+        N3["TCP / IP Network"]
+        N4["NAS Controller"]
+        N5["Filesystem"]
+        N6["RAID / Disk Pool"]
+        N1 --> N2 --> N3 --> N4 --> N5 --> N6
+        N7["File I/O<br/>Shared Access<br/>Multi-Client"]
+        N6 ~~~ N7
     end
 
-    subgraph SAN_TOP["3. STORAGE AREA NETWORK (SAN)"]
+    subgraph SAN["3. SAN · Storage Area Network"]
         direction TB
-        SAN_SRV["Compute Cluster (HBAs)"]
-        SAN_SW["Dedicated 32G Fibre Channel Fabric Switches"]
-        SAN_ARR["Enterprise SAN Storage Array (Pure / EMC / NetApp)"]
-        SAN_SRV --- SAN_SW --- SAN_ARR
-        SAN_DESC["Ultra-fast block LUNs; high hardware cost; requires dedicated SAN engineering team"]
+        S1["Application"]
+        S2["Host Filesystem"]
+        S3["HBA / Initiator"]
+        S4["FC / iSCSI Fabric"]
+        S5["SAN Controller"]
+        S6["LUN / Block Volume"]
+        S1 --> S2 --> S3 --> S4 --> S5 --> S6
+        S7["Block I/O<br/>Multipathing<br/>Enterprise Storage"]
+        S6 ~~~ S7
     end
 
-    DAS_TOP ~~~ NAS_TOP ~~~ SAN_TOP
+    subgraph CLOUD["4. CLOUD · Cloud Storage"]
+        direction TB
+        C1["Cloud Application"]
+        C2["SDK / REST API"]
+        C3["Internet / Private Link"]
+        C4["Cloud Storage Service"]
+        C5["Object / File / Block"]
+        C6["Distributed Storage"]
+        C1 --> C2 --> C3 --> C4 --> C5 --> C6
+        C7["S3 / Blob · Object<br/>EFS / Files · File<br/>EBS / Disks · Block"]
+        C6 ~~~ C7
+    end
 
-    %% Theme Styling
-    style DAS_TOP fill:#ef4444,fill-opacity:0.08,stroke:#ef4444,stroke-width:2px,color:inherit
-    style NAS_TOP fill:#f97316,fill-opacity:0.08,stroke:#f97316,stroke-width:2px,color:inherit
-    style SAN_TOP fill:#0284c7,fill-opacity:0.08,stroke:#0284c7,stroke-width:2px,color:inherit
+    DAS ~~~ NAS ~~~ SAN ~~~ CLOUD
 
-    classDef dasNode fill:#ef4444,fill-opacity:0.15,stroke:#ef4444,stroke-width:1.5px,color:inherit
-    class DAS_SRV,DAS_BUS,DAS_DISK dasNode
+    style DAS fill:#ef4444,fill-opacity:0.06,stroke:#ef4444,stroke-width:2px,color:inherit
+    style NAS fill:#f97316,fill-opacity:0.06,stroke:#f97316,stroke-width:2px,color:inherit
+    style SAN fill:#0284c7,fill-opacity:0.06,stroke:#0284c7,stroke-width:2px,color:inherit
+    style CLOUD fill:#8b5cf6,fill-opacity:0.06,stroke:#8b5cf6,stroke-width:2px,color:inherit
 
-    classDef nasNode fill:#f97316,fill-opacity:0.15,stroke:#f97316,stroke-width:1.5px,color:inherit
-    class NAS_CLI,NAS_NET,NAS_APP nasNode
+    classDef dasNode fill:#ef4444,fill-opacity:0.14,stroke:#ef4444,color:inherit
+    classDef nasNode fill:#f97316,fill-opacity:0.14,stroke:#f97316,color:inherit
+    classDef sanNode fill:#0284c7,fill-opacity:0.14,stroke:#0284c7,color:inherit
+    classDef cloudNode fill:#8b5cf6,fill-opacity:0.14,stroke:#8b5cf6,color:inherit
 
-    classDef sanNode fill:#0284c7,fill-opacity:0.15,stroke:#0284c7,stroke-width:1.5px,color:inherit
-    class SAN_SRV,SAN_SW,SAN_ARR sanNode
+    class D1,D2,D3,D4 dasNode
+    class N1,N2,N3,N4,N5,N6 nasNode
+    class S1,S2,S3,S4,S5,S6 sanNode
+    class C1,C2,C3,C4,C5,C6 cloudNode
 
-    linkStyle default stroke:#64748b,stroke-width:2px
+    classDef dasInfo fill:#ef4444,fill-opacity:0.05,stroke:#ef4444,stroke-dasharray:4 3,color:inherit
+    classDef nasInfo fill:#f97316,fill-opacity:0.05,stroke:#f97316,stroke-dasharray:4 3,color:inherit
+    classDef sanInfo fill:#0284c7,fill-opacity:0.05,stroke:#0284c7,stroke-dasharray:4 3,color:inherit
+    classDef cloudInfo fill:#8b5cf6,fill-opacity:0.05,stroke:#8b5cf6,stroke-dasharray:4 3,color:inherit
+
+    class D5 dasInfo
+    class N7 nasInfo
+    class S7 sanInfo
+    class C7 cloudInfo
+
+    linkStyle default stroke:#64748b,stroke-width:1.8px
+
 ```
 
 ### Storage Topologies Comparison
@@ -208,35 +340,114 @@ flowchart TD
 In traditional data center operations, infrastructure capacity is static and stepped. Engineering teams face an inescapable trade-off:
 
 ```mermaid
+
 flowchart LR
-    subgraph OVERPROV["SCENARIO A: OVER-PROVISIONING (FINANCIAL WASTE)"]
+
+    %% ==========================================
+    %% SCENARIO A — OVER PROVISIONING
+    %% ==========================================
+
+    subgraph OVERPROV["SCENARIO A — OVER-PROVISIONING"]
         direction TB
-        O_CAP["Hardware Capacity Sized for Black Friday Peak (100%)"]
-        O_ACT["Average Daily Workload Demand (12%)"]
-        O_GAP["Waste: 88% of hardware idles 360 days/year drawing power & cooling"]
-        O_CAP --- O_ACT --- O_GAP
+
+        subgraph O_CAPACITY["1. CAPACITY PLANNING"]
+            direction LR
+            O_PEAK["Infrastructure Capacity<br/>Designed for Peak Demand"]
+            O_HARDWARE["Servers / CPU / RAM<br/>Storage / Network"]
+            O_PEAK --> O_HARDWARE
+        end
+
+        subgraph O_WORKLOAD["2. ACTUAL WORKLOAD"]
+            direction LR
+            O_MAX["Provisioned Capacity<br/>100%"]
+            O_USAGE["Average Resource Usage<br/>12%"]
+            O_MAX --> O_USAGE
+        end
+
+        subgraph O_IMPACT["3. RESOURCE WASTE"]
+            direction TB
+            O_IDLE["88% Unused Capacity"]
+            O_POWER["Continuous Power<br/>& Cooling Consumption"]
+            O_COST["Higher Infrastructure<br/>Operating Costs"]
+            O_IDLE --> O_POWER --> O_COST
+        end
+
+        O_HARDWARE --> O_MAX
+        O_USAGE --> O_IDLE
     end
 
-    subgraph UNDERPROV["SCENARIO B: UNDER-PROVISIONING (BUSINESS DISASTER)"]
+    %% ==========================================
+    %% SCENARIO B — UNDER PROVISIONING
+    %% ==========================================
+
+    subgraph UNDERPROV["SCENARIO B — UNDER-PROVISIONING"]
         direction TB
-        U_CAP["Hardware Capacity Sized for Average Demand"]
-        U_SPIKE["Sudden Traffic Spike (Product Launch / Viral Surge)"]
-        U_CRASH["System Outage: Servers exhaust CPU/RAM; crashed carts; lost revenue"]
-        U_CAP --- U_SPIKE --- U_CRASH
+
+        subgraph U_CAPACITY["1. CAPACITY PLANNING"]
+            direction LR
+            U_AVG["Infrastructure Capacity<br/>Designed for Average Demand"]
+            U_HARDWARE["Limited Servers / CPU / RAM<br/>Storage / Network"]
+            U_AVG --> U_HARDWARE
+        end
+
+        subgraph U_WORKLOAD["2. SUDDEN TRAFFIC SPIKE"]
+            direction LR
+            U_NORMAL["Normal Workload"]
+            U_SPIKE["Traffic Surge<br/>Product Launch / Viral Event"]
+            U_NORMAL --> U_SPIKE
+        end
+
+        subgraph U_IMPACT["3. RESOURCE EXHAUSTION"]
+            direction TB
+            U_CPU["CPU Saturation"]
+            U_RAM["Memory Exhaustion"]
+            U_QUEUE["Request Queue Buildup"]
+            U_CPU --> U_RAM --> U_QUEUE
+        end
+
+        subgraph U_FAILURE["4. BUSINESS IMPACT"]
+            direction TB
+            U_CRASH["Application Degradation<br/>or Server Failure"]
+            U_CART["Failed Transactions<br/>Abandoned Shopping Carts"]
+            U_REVENUE["Revenue Loss<br/>Customer Dissatisfaction"]
+            U_CRASH --> U_CART --> U_REVENUE
+        end
+
+        U_HARDWARE --> U_NORMAL
+        U_SPIKE --> U_CPU
+        U_QUEUE --> U_CRASH
     end
+
+    %% ==========================================
+    %% COMPARISON
+    %% ==========================================
 
     OVERPROV ~~~ UNDERPROV
 
-    style OVERPROV fill:#f97316,fill-opacity:0.08,stroke:#f97316,stroke-width:2px,color:inherit
-    style UNDERPROV fill:#ef4444,fill-opacity:0.08,stroke:#ef4444,stroke-width:2px,color:inherit
+    %% ==========================================
+    %% STYLING
+    %% ==========================================
 
-    classDef ovNode fill:#f97316,fill-opacity:0.15,stroke:#f97316,stroke-width:1.5px,color:inherit
-    class O_CAP,O_ACT,O_GAP ovNode
+    style OVERPROV fill:#f97316,fill-opacity:0.05,stroke:#f97316,stroke-width:2px,color:inherit
+    style UNDERPROV fill:#ef4444,fill-opacity:0.05,stroke:#ef4444,stroke-width:2px,color:inherit
 
-    classDef unNode fill:#ef4444,fill-opacity:0.15,stroke:#ef4444,stroke-width:1.5px,color:inherit
-    class U_CAP,U_SPIKE,U_CRASH unNode
+    style O_CAPACITY fill:#f97316,fill-opacity:0.08,stroke:#f97316,color:inherit
+    style O_WORKLOAD fill:#f97316,fill-opacity:0.08,stroke:#f97316,color:inherit
+    style O_IMPACT fill:#f97316,fill-opacity:0.08,stroke:#f97316,color:inherit
 
-    linkStyle default stroke:#64748b,stroke-width:2px
+    style U_CAPACITY fill:#ef4444,fill-opacity:0.08,stroke:#ef4444,color:inherit
+    style U_WORKLOAD fill:#ef4444,fill-opacity:0.08,stroke:#ef4444,color:inherit
+    style U_IMPACT fill:#ef4444,fill-opacity:0.08,stroke:#ef4444,color:inherit
+    style U_FAILURE fill:#ef4444,fill-opacity:0.08,stroke:#ef4444,color:inherit
+
+    classDef overNode fill:#f97316,fill-opacity:0.15,stroke:#f97316,stroke-width:1.5px,color:inherit
+    classDef underNode fill:#ef4444,fill-opacity:0.15,stroke:#ef4444,stroke-width:1.5px,color:inherit
+
+    class O_PEAK,O_HARDWARE,O_MAX,O_USAGE,O_IDLE,O_POWER,O_COST overNode
+    class U_AVG,U_HARDWARE,U_NORMAL,U_SPIKE,U_CPU,U_RAM,U_QUEUE,U_CRASH,U_CART,U_REVENUE underNode
+
+    linkStyle default stroke:#64748b,stroke-width:1.5px
+
 ```
 
 ### The Inherent Flaws of On-Premises Capacity Planning:

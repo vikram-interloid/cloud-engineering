@@ -1,0 +1,158 @@
+/* =================================
+   CUSTOM OBSIDIAN THEME
+   Professional Documentation Style
+================================= */
+
+/* Main typography */
+body {
+    --font-text: "Inter", sans-serif;
+    --font-interface: "Inter", sans-serif;
+    --font-monospace: "JetBrains Mono", monospace;
+    --h1-color: #60a5fa;
+    --h2-color: #38bdf8;
+    --h3-color: #a78bfa;
+    --h4-color: #34d399;
+    --text-normal: var(--text-normal);
+    --link-color: #60a5fa;
+    --link-color-hover: #93c5fd;
+}
+
+/* Note title */
+.inline-title {
+    font-size: 2rem;
+    font-weight: 750;
+    letter-spacing: -0.7px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--background-modifier-border);
+}
+
+/* Headings */
+.markdown-preview-view h1,
+.markdown-rendered h1 {
+    font-size: 2rem;
+    font-weight: 750;
+    border-bottom: 2px solid var(--background-modifier-border);
+    padding-bottom: 10px;
+}
+
+.markdown-preview-view h2 {
+    font-size: 1.55rem;
+    font-weight: 700;
+    margin-top: 32px;
+    padding-left: 12px;
+    border-left: 4px solid #38bdf8;
+}
+
+.markdown-preview-view h3 {
+    font-size: 1.25rem;
+    font-weight: 650;
+    margin-top: 24px;
+}
+
+.markdown-preview-view h4 {
+    font-size: 1.05rem;
+    font-weight: 650;
+}
+
+/* Paragraphs */
+.markdown-preview-view p {
+    line-height: 1.85;
+    font-size: 15px;
+}
+
+/* Code blocks */
+.markdown-preview-view pre {
+    border: 1px solid var(--background-modifier-border);
+    border-radius: 10px;
+    padding: 18px;
+    line-height: 1.7;
+    font-size: 13px;
+}
+
+/* Inline code */
+.markdown-preview-view code {
+    font-family: var(--font-monospace);
+    border-radius: 5px;
+    padding: 2px 5px;
+}
+
+/* Tables */
+.markdown-preview-view table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+}
+
+.markdown-preview-view th {
+    background: var(--background-secondary);
+    font-weight: 700;
+    text-align: left;
+}
+
+.markdown-preview-view th,
+.markdown-preview-view td {
+    padding: 12px;
+    border: 1px solid var(--background-modifier-border);
+}
+
+/* Quotes */
+.markdown-preview-view blockquote {
+    border-left: 4px solid #38bdf8;
+    background: var(--background-secondary);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+}
+
+/* Links */
+.markdown-preview-view a {
+    text-decoration: none;
+    font-weight: 550;
+}
+
+.markdown-preview-view a:hover {
+    text-decoration: underline;
+}
+
+/* Horizontal divider */
+.markdown-preview-view hr {
+    border: none;
+    border-top: 1px solid var(--background-modifier-border);
+    margin: 30px 0;
+}
+
+/* Images */
+.markdown-preview-view img {
+    border-radius: 10px;
+    max-width: 100%;
+}
+
+/* Callouts */
+.callout {
+    border-radius: 10px;
+    padding: 12px;
+    margin: 18px 0;
+}
+
+/* Lists */
+.markdown-preview-view li {
+    margin-top: 7px;
+    line-height: 1.7;
+}
+
+/* Selection */
+::selection {
+    background: rgba(56, 189, 248, 0.25);
+}
+
+.markdown-preview-view,
+.markdown-source-view {
+    padding-left: 40px !important;
+    padding-right: 140px !important;
+}
+
+/* Center content and limit maximum width */
+.markdown-preview-view .markdown-preview-sizer {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
